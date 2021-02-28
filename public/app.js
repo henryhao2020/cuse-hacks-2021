@@ -20,6 +20,20 @@ const db = firebase.firestore()
 
 const submitButton = document.getElementById("submitButton");
 
+var fileInput = document.getElementById("myfile"),
+
+    readFile = function () {
+        var reader = new FileReader();
+        
+        reader.onload = function () {
+            document.getElementById('out').innerHTML = reader.result;
+        };
+        // start reading the file. When it is done, calls the onload event defined above.
+        reader.readAsBinaryString(fileInput.files[0]);
+    };
+
+fileInput.addEventListener('change', readFile);
+
 
 // This event listener will print the zipcode to BMI mappings
 submitButton.addEventListener("click", function () {
